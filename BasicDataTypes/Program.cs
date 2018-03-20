@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 namespace BasicDataTypes
 {
@@ -17,6 +18,10 @@ namespace BasicDataTypes
             CharFunctionality();
             ParseFromStrings();
             ParseFromStringWithTryParse();
+            UseDatesandTime();
+            UseBigInteger();
+            DigitSeparators();
+            BinaryLiterals();
         }
 
         static void LocalVarDeclaration()
@@ -114,6 +119,64 @@ namespace BasicDataTypes
                 Console.WriteLine("Failed to convert the input ({0}) to a double", value);
             }
             Console.WriteLine();
+        }
+
+        static void UseDatesandTime()
+        {
+            Console.WriteLine("=> Dates and Times:");
+
+            //This constructor takes (year, month, day).
+            DateTime dt = new DateTime(2015, 10, 17);
+
+            //What day of the month is this?
+            Console.WriteLine("The day of {0} is {1}", dt.Date, dt.DayOfWeek);
+
+            //Month is now December.
+            dt = dt.AddMonths(2);
+            Console.WriteLine("Daylight savings: {0}", dt.IsDaylightSavingTime());
+
+            //This constructor takes (hours, minutes, seconds).
+            TimeSpan ts = new TimeSpan(4, 30, 0);
+            Console.WriteLine(ts);
+
+            //Subtract 15 minutes from the current TimeSpan and
+            //print the result.
+            Console.WriteLine(ts.Subtract(new TimeSpan(0, 15, 0)));
+        }
+
+        static void UseBigInteger()
+        {
+            Console.WriteLine("=> Use BigInteger:");
+            BigInteger biggy = BigInteger.Parse("99999999999999999999999999999999999999999999");
+            Console.WriteLine("Value of biggy is {0}", biggy);
+            Console.WriteLine("Is biggy an even value?: {0}", biggy.IsEven);
+            Console.WriteLine("Is biggy a power of two?: {0}", biggy.IsPowerOfTwo);
+            BigInteger reallyBig = BigInteger.Multiply(biggy, BigInteger.Parse("888888888888888888888888888888888888"));
+            Console.WriteLine("Value of reallyBig is {0}", reallyBig);
+        }
+
+        static void DigitSeparators()
+        {
+            Console.WriteLine("=> Use Digit Separators:");
+            Console.Write("Integer:");
+            Console.WriteLine(123_456);
+            Console.Write("Long:");
+            Console.Write(123_456_789L);
+            Console.WriteLine("Float:");
+            Console.Write(123_456.1234F);
+            Console.WriteLine("Double:");
+            Console.Write(123_456.12);
+            Console.WriteLine("Decimal:");
+            Console.Write(123_456.12M);
+        }
+
+        private static void BinaryLiterals()
+        {
+            Console.WriteLine("=> Use Binary Literals:");
+            Console.WriteLine("Sixteen: {0}", 0b0001_0000);
+            Console.WriteLine("Thirty Two: {0}", 0b0010_0000);
+            Console.WriteLine("Sixty Four: {0}", 0b0100_0000);
+
         }
     }
 }
